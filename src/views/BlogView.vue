@@ -1,11 +1,11 @@
 <template>
   <div>
-    <HeroComponent />
+    <BlogDetails />
   </div>
 </template>
 
 <script setup>
-import HeroComponent from "@/components/HeroComponent.vue";
+import BlogDetails from "@/components/BlogDetails.vue";
 </script>
 
 <style lang="scss" scoped></style>

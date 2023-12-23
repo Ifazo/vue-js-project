@@ -6,7 +6,6 @@ import FooterComponent from "./components/FooterComponent.vue";
 
 <template>
   <HeaderComponent />
-  <h1 class="text-3xl font-bold text-center">Hello world!</h1>
   <RouterView />
   <FooterComponent />
 </template>
