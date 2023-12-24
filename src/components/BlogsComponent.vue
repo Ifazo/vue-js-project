@@ -103,10 +103,11 @@
 <script>
 import { ref, onMounted } from "vue";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase.config";
+import { useFirestore } from "vuefire";
 
 export default {
   setup() {
+    const db = useFirestore();
     const blogs = ref([]);
 
     onMounted(async () => {

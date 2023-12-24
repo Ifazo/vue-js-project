@@ -2,8 +2,7 @@
 import { RouterView } from "vue-router";
 import HeaderComponent from "./components/HeaderComponent.vue";
 import FooterComponent from "./components/FooterComponent.vue";
-import { VueFire, VueFireAuth } from "vuefire";
-import { app } from "../firebase.config";
+
 export default {
   name: "App",
   components: {
@@ -11,12 +10,6 @@ export default {
     FooterComponent,
     RouterView,
   },
-  // app.use(VueFire, {
-  //   firebase: app,
-  //   modules: [
-  //     VueFireAuth()
-  //   ]
-  // })
 };
 </script>
 

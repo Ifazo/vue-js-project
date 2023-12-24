@@ -18,7 +18,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
@@ -26,3 +26,4 @@ export const db = getFirestore(app);
 export const blogsRef = collection(db, "blogs");
 export const usersRef = collection(db, "users");
 export const commentsRef = collection(db, "comments");
+export default firebaseApp = app;
