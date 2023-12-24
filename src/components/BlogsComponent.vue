@@ -100,6 +100,28 @@
   </div>
 </template>
 
-<script setup></script>
+<script>
+import { ref, onMounted } from "vue";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase.config";
+
+export default {
+  setup() {
+    const blogs = ref([]);
+
+    onMounted(async () => {
+      const querySnapshot = await getDocs(collection(db, "blogs"));
+      querySnapshot.forEach((doc) => {
+        blogs.value.push(doc.data());
+        console.log(`${doc.id} => ${doc.data().title}`);
+      });
+    });
+
+    return {
+      blogs,
+    };
+  },
+};
+</script>
 
 <style lang="scss" scoped></style>

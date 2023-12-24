@@ -67,8 +67,36 @@
   </div>
 </template>
 
-<script setup>
+<script>
+import { db } from "../../firebase.config";
 import MoreBlogs from "./MoreBlogs.vue";
+import { doc, getDoc } from "firebase/firestore";
+import { ref, onMounted } from "vue";
+
+export default {
+  components: {
+    MoreBlogs,
+  },
+  setup() {
+    const blog = ref(null);
+    const getBlog = async () => {
+      const docRef = doc(db, "blogs", "fxapbTnxVwvXjdifG794");
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        blog.value = docSnap.data();
+        console.log("Document data:", docSnap.data().title);
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    };
+    onMounted(getBlog);
+    return {
+      blog,
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,5 +1,16 @@
 <template>
-  <div class="about">
-    <h1>This is Profile page</h1>
+  <div>
+    <ProfileCard />
   </div>
 </template>
+
+<script>
+import ProfileCard from "@/components/ProfileCard.vue";
+export default {
+  components: {
+    ProfileCard,
+  },
+};
+</script>
+
+<style lang="scss" scoped></style>
