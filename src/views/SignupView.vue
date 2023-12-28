@@ -30,7 +30,7 @@
       <div v-show="error">{{ this.errorMessage }}</div>
       <div>
         <button
-          @click.prevent="signup()"
+          @click="signup()"
           type="button"
           class="mt-5 w-full rounded-md bg-blue-600 p-2 text-center font-semibold text-white outline-none focus:ring">
           Sign up

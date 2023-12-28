@@ -29,7 +29,7 @@
       <div v-show="error">{{ this.errorMessage }}</div>
       <div>
         <button
-          @click.prevent="login()"
+          @click="login()"
           type="button"
           class="mt-5 w-full rounded-md bg-blue-600 p-2 text-center font-semibold text-white outline-none focus:ring">
           Log in
@@ -37,7 +37,7 @@
       </div>
       <div>
         <button
-          @click.prevent="googleLogin()"
+          @click="googleLogin()"
           type="button"
           class="mt-5 w-full rounded-md bg-blue-600 p-2 text-center font-semibold text-white outline-none focus:ring">
           Google sign in
