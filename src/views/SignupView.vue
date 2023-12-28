@@ -11,14 +11,6 @@
       </p>
 
       <div>
-        <label class=""> User name </label>
-        <input
-          type="text"
-          placeholder="User name"
-          v-model="name"
-          class="mt-2 h-12 w-full rounded-md bg-gray-100 px-3 outline-none focus:ring" />
-      </div>
-      <div class="">
         <label class=""> Email Address </label>
         <input
           type="email"
@@ -26,6 +18,7 @@
           v-model="email"
           class="mt-2 h-12 w-full rounded-md bg-gray-100 px-3 outline-none focus:ring" />
       </div>
+
       <div>
         <label class=""> Password </label>
         <input
@@ -37,10 +30,10 @@
       <div v-show="error">{{ this.errorMessage }}</div>
       <div>
         <button
-          @click.prevent="signup"
+          @click.prevent="signup()"
           type="button"
           class="mt-5 w-full rounded-md bg-blue-600 p-2 text-center font-semibold text-white outline-none focus:ring">
-          Get Started
+          Sign up
         </button>
       </div>
     </form>
@@ -49,32 +42,32 @@
 
 <script>
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import app from "../firebase";
 
 export default {
   name: "Signup",
   data() {
     return {
-      name: "",
       email: "",
       password: "",
+      error: null,
+      errorCode: "",
       errorMessage: "",
     };
   },
   methods: {
     signup() {
-      const auth = getAuth();
+      const auth = getAuth(app);
       createUserWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          console.log(user);
-          // ...
+          this.user = userCredential.user;
+          console.log(this.user);
+          this.$router.push({ name: "home" });
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode, errorMessage);
-          // ..
+          this.errorCode = error.code;
+          this.errorMessage = error.message;
+          console.log(this.errorCode, this.errorMessage)
         });
     },
   },

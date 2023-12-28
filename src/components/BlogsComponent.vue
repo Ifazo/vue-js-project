@@ -102,19 +102,18 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import { collection, getDocs } from "firebase/firestore";
-import { useFirestore } from "vuefire";
+import { getDocs } from "firebase/firestore";
+import { blogsRef } from "../firebase";
 
 export default {
   setup() {
-    const db = useFirestore();
     const blogs = ref([]);
 
     onMounted(async () => {
-      const querySnapshot = await getDocs(collection(db, "blogs"));
+      const querySnapshot = await getDocs(blogsRef);
       querySnapshot.forEach((doc) => {
         blogs.value.push(doc.data());
-        console.log(`${doc.id} => ${doc.data().title}`);
+        console.log(blogs.value);
       });
     });
 

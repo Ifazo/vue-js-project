@@ -68,7 +68,8 @@
 </template>
 
 <script>
-import { db } from "../../firebase.config";
+import { useRouter } from "vue-router";
+import { blogsRef } from "../firebase";
 import MoreBlogs from "./MoreBlogs.vue";
 import { doc, getDoc } from "firebase/firestore";
 import { ref, onMounted } from "vue";
@@ -78,9 +79,11 @@ export default {
     MoreBlogs,
   },
   setup() {
+    const router = useRouter();
     const blog = ref(null);
-    const getBlog = async () => {
-      const docRef = doc(db, "blogs", "fxapbTnxVwvXjdifG794");
+
+    onMounted(async () => {
+      const docRef = doc(blogsRef, "id");
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -90,8 +93,8 @@ export default {
         // doc.data() will be undefined in this case
         console.log("No such document!");
       }
-    };
-    onMounted(getBlog);
+    });
+
     return {
       blog,
     };

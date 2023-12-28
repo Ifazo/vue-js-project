@@ -4,7 +4,7 @@
       class="relative space-y-3 rounded-md bg-white p-6 shadow-xl lg:p-10 border border-gray-100 m-10">
       <h1 class="text-center text-xl font-semibold lg:text-2xl">Login</h1>
       <p class="text-center pb-4 text-gray-500">
-        Do not have an account 
+        Do not have an account
         <span class="text-blue-600">
           <RouterLink to="/signup">Sign up</RouterLink>
         </span>
@@ -29,7 +29,7 @@
       <div v-show="error">{{ this.errorMessage }}</div>
       <div>
         <button
-          @click.prevent="login"
+          @click.prevent="login()"
           type="button"
           class="mt-5 w-full rounded-md bg-blue-600 p-2 text-center font-semibold text-white outline-none focus:ring">
           Log in
@@ -37,7 +37,7 @@
       </div>
       <div>
         <button
-          @click.prevent="googleLogin"
+          @click.prevent="googleLogin()"
           type="button"
           class="mt-5 w-full rounded-md bg-blue-600 p-2 text-center font-semibold text-white outline-none focus:ring">
           Google sign in
@@ -54,6 +54,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
+import app from "../firebase";
 
 export default {
   name: "Login",
@@ -62,42 +63,39 @@ export default {
     return {
       email: "",
       password: "",
-      error: false,
+      error: null,
       errorCode: "",
       errorMessage: "",
     };
   },
   methods: {
     login() {
-      const auth = getAuth();
+      const auth = getAuth(app);
       signInWithEmailAndPassword(auth, this.email, this.password)
-        .then(() => {
-          // this.$router.push({ name: "Home" });
-          this.error = false;
-          this.errorMessage = "";
-          console.log("User logged in!");
+        .then((userCredential) => {
+          this.user = userCredential.user;
+          console.log(this.user);
+          this.$router.push({ name: "home" });
         })
-        .catch((err) => {
-          this.error = true;
-          this.errorMessage = err.message;
+        .catch((error) => {
+          this.errorCode = error.code;
+          this.errorMessage = error.message;
         });
     },
 
     googleLogin() {
-      const auth = getAuth();
+      const auth = getAuth(app);
       const provider = new GoogleAuthProvider();
       signInWithPopup(auth, provider)
-        .then(() => {
-          // this.$router.push({ name: "Home" });
-          this.error = false;
-          this.errorCode = "";
-          this.errorMessage = "";
-          console.log("User logged in!");
+        .then((userCredential) => {
+          this.user = userCredential.user;
+          console.log(this.user);
+          this.$router.push({ name: "home" });
         })
-        .catch((err) => {
-          this.error = true;
-          this.errorCode = err.code;
-          this.errorMessage = err.message;
+        .catch((error) => {
+          this.errorCode = error.code;
+          this.errorMessage = error.message;
+          console.log(error.code, error.message);
         });
     },
   },
