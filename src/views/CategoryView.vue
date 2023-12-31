@@ -5,7 +5,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "CategoryView",
+};
 </script>
 
 <style lang="scss" scoped></style>

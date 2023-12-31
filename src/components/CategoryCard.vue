@@ -1,9 +1,9 @@
 <template>
-  <div v-for="category in categories" :key="category.id">
+  <div>
     <!-- Card -->
-    <a
-      class="group flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-md transition dark:bg-slate-900 dark:border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-      :href="`/blogs?${category.name}`">
+    <RouterLink
+    :to="`/categories/${category.id}`"
+      class="group flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-md transition dark:bg-slate-900 dark:border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
       <div class="p-4 md:p-5">
         <div class="flex justify-between items-center">
           <div>
@@ -30,38 +30,23 @@
           </div>
         </div>
       </div>
-    </a>
+    </RouterLink>
     <!-- End Card -->
   </div>
 </template>
 
 <script>
-import { categoriesRef } from "@/firebase";
-import { getDocs } from "firebase/firestore";
+import { RouterLink } from 'vue-router';
 
 export default {
-  name: "CategoryCard",
-  data() {
-    return {
-      categories: [],
-    };
-  },
-  methods: {
-    async getCategories() {
-      try {
-        const categories = await getDocs(categoriesRef);
-        categories.forEach((doc) => {
-          this.categories.push(doc.data());
-          console.log(this.categories);
-        });
-      } catch (error) {
-        console.log(error);
-      }
+    name: "CategoryCard",
+    props: {
+        category: {
+            type: Object,
+            required: true,
+        },
     },
-  },
-  mounted() {
-    this.getCategories();
-  },
+    components: { RouterLink }
 };
 </script>
 

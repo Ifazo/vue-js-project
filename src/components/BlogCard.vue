@@ -1,8 +1,10 @@
 <template>
-  <div v-for="blog in blogs" :key="blog.id">
+  <div>
     <article
       class="h-90 col-span-1 m-auto min-h-full cursor-pointer overflow-hidden rounded-lg pb-2 shadow-lg transition-transform duration-200 hover:translate-y-2">
-      <a :href="'/blogs' + blog.id" class="block h-full w-full">
+      <RouterLink
+        :to="`/blogs/${blog.id}`"
+       class="block h-full w-full">
         <img
           class="max-h-40 w-full object-cover"
           alt="featured image"
@@ -28,38 +30,22 @@
             </div>
           </div>
         </div>
-      </a>
+      </RouterLink>
     </article>
   </div>
 </template>
 
 <script>
-import { blogsRef } from "@/firebase";
-import { getDocs } from "firebase/firestore";
+import { RouterLink } from 'vue-router';
 
 export default {
-  name: "BlogCard",
-  data() {
-    return {
-      blogs: [],
-    };
-  },
-  methods: {
-    async getBlogs() {
-      try {
-        const blogs = await getDocs(blogsRef);
-        blogs.forEach((doc) => {
-          this.blogs.push(doc.data());
-          console.log(this.blogs);
-        });
-      } catch (error) {
-        console.log(error);
-      }
+    props: {
+        blog: {
+            type: Object,
+            required: true,
+        },
     },
-  },
-  mounted() {
-    this.getBlogs();
-  },
+    components: { RouterLink }
 };
 </script>
 

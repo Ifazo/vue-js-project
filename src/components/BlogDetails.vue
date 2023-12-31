@@ -5,7 +5,7 @@
         <header class="mx-auto max-w-screen-xl pt-28 text-center">
           <p class="text-gray-500">Published April 4, 2022</p>
           <h1 class="mt-2 text-3xl font-bold text-gray-900 sm:text-5xl">
-            7 rules of effective marketing
+            {{ blog.title }}
           </h1>
           <p class="mt-6 text-lg text-gray-700">
             You're doing marketing the wrong way
@@ -38,21 +38,11 @@
 
         <div
           class="mx-auto mt-10 max-w-screen-md space-y-12 px-4 py-10 font-serif text-lg tracking-wide text-gray-700">
-          <strong class="text-2xl font-medium"
-            >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime
-            impedit ex consequatur nostrum cupiditate at sequi? Ipsam commodi
-            modi officia mollitia doloribus tenetur consectetur quae?</strong
-          >
+          <strong class="text-2xl font-medium">
+            {{ blog.body }}
+          </strong>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto enim
-            maxime sit laudantium! Dolore atque, maxime iusto ut quas distinctio
-            reiciendis animi voluptatibus soluta molestias, mollitia officiis
-            laboriosam illum earum.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
-            similique reiciendis et recusandae provident repellendus rem
-            doloremque eaque error assumenda?
+            {{ blog.body }}
           </p>
         </div>
       </article>
@@ -63,41 +53,17 @@
       <div class="h-0.5 w-32 bg-gray-600"></div>
       <div class="h-0.5 w-2 bg-gray-600"></div>
     </div>
-    <MoreBlogs />
   </div>
 </template>
 
 <script>
-import { useRouter } from "vue-router";
-import { blogsRef } from "../firebase";
-import MoreBlogs from "./MoreBlogs.vue";
-import { doc, getDoc } from "firebase/firestore";
-import { ref, onMounted } from "vue";
-
 export default {
-  components: {
-    MoreBlogs,
-  },
-  setup() {
-    const router = useRouter();
-    const blog = ref(null);
-
-    onMounted(async () => {
-      const docRef = doc(blogsRef, "id");
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        blog.value = docSnap.data();
-        console.log("Document data:", docSnap.data().title);
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
-    });
-
-    return {
-      blog,
-    };
+  name: "BlogDetails",
+  props: {
+    blog: {
+      type: Object,
+      required: true,
+    },
   },
 };
 </script>
