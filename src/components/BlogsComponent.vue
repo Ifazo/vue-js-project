@@ -1,125 +1,64 @@
 <template>
-  <div>
-    <section class="py-20">
-      <h1 class="mb-12 text-center font-sans text-5xl font-bold">
-        Recent Posts
-      </h1>
-      <div
-        class="mx-auto grid max-w-screen-lg grid-cols-1 gap-5 p-5 sm:grid-cols-2 md:grid-cols-3 lg:gap-10">
-        <article
-          class="h-90 col-span-1 m-auto min-h-full cursor-pointer overflow-hidden rounded-lg pb-2 shadow-lg transition-transform duration-200 hover:translate-y-2">
-          <a href="#" class="block h-full w-full">
-            <img
-              class="max-h-40 w-full object-cover"
-              alt="featured image"
-              src="https://images.unsplash.com/photo-1660241588741-d653d53348fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" />
-            <div class="w-full bg-white p-4">
-              <p class="text-md font-medium text-indigo-500">Nature</p>
-              <p class="mb-2 text-xl font-medium text-gray-800">
-                A Visit to Mount Abignale
-              </p>
-              <p class="text-md font-light text-gray-400">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse
-                vel neque ipsam?
-              </p>
-              <div class="justify-starts mt-4 flex flex-wrap items-center">
-                <div
-                  class="mr-2 mt-1 rounded-2xl bg-blue-100 py-1.5 px-4 text-xs text-gray-600">
-                  #js
-                </div>
-                <div
-                  class="mr-2 mt-1 rounded-2xl bg-blue-100 py-1.5 px-4 text-xs text-gray-600">
-                  #icefactory
-                </div>
-              </div>
+  <div v-for="blog in blogs" :key="blog.id">
+    <article
+      class="h-90 col-span-1 m-auto min-h-full cursor-pointer overflow-hidden rounded-lg pb-2 shadow-lg transition-transform duration-200 hover:translate-y-2">
+      <a :href="'/blogs' + blog.id" class="block h-full w-full">
+        <img
+          class="max-h-40 w-full object-cover"
+          alt="featured image"
+          :src="blog.image" />
+        <div class="w-full bg-white p-4">
+          <p class="text-md font-medium text-indigo-500">
+            {{ blog.category }}
+          </p>
+          <p class="mb-2 text-xl font-medium text-gray-800">
+            {{ blog.title }}
+          </p>
+          <p class="text-md font-light text-gray-400">
+            {{ blog.body }}
+          </p>
+          <div class="justify-between mt-4 flex flex-wrap items-center">
+            <div
+              class="mr-2 mt-1 rounded-2xl bg-blue-100 py-1.5 px-4 text-xs text-gray-600">
+              {{ blog.author }}
             </div>
-          </a>
-        </article>
-
-        <article
-          class="h-90 col-span-1 m-auto min-h-full cursor-pointer overflow-hidden rounded-lg pb-2 shadow-lg transition-transform duration-200 hover:translate-y-2">
-          <a href="#" class="block h-full w-full">
-            <img
-              class="max-h-40 w-full object-cover"
-              alt="featured image"
-              src="https://images.unsplash.com/photo-1660213372424-deecb106a28e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0Mnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" />
-            <div class="w-full bg-white p-4">
-              <p class="text-md font-medium text-indigo-500">Gardening</p>
-              <p class="mb-2 text-xl font-medium text-gray-800">
-                Sunflowers are my favorite
-              </p>
-              <p class="text-md font-light text-gray-400">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse
-                vel neque ipsam?
-              </p>
-              <div class="justify-starts mt-4 flex flex-wrap items-center">
-                <div
-                  class="mr-2 mt-1 rounded-2xl bg-blue-100 py-1.5 px-4 text-xs text-gray-600">
-                  #js
-                </div>
-                <div
-                  class="mr-2 mt-1 rounded-2xl bg-blue-100 py-1.5 px-4 text-xs text-gray-600">
-                  #icefactory
-                </div>
-              </div>
+            <div
+              class="mr-2 mt-1 rounded-2xl bg-blue-100 py-1.5 px-4 text-xs text-gray-600">
+              {{ blog.date }}
             </div>
-          </a>
-        </article>
-
-        <article
-          class="h-90 col-span-1 m-auto min-h-full cursor-pointer overflow-hidden rounded-lg pb-2 shadow-lg transition-transform duration-200 hover:translate-y-2">
-          <a href="#" class="block h-full w-full">
-            <img
-              class="max-h-40 w-full object-cover"
-              alt="featured image"
-              src="https://images.unsplash.com/photo-1660227868332-93e0a0a8c67e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzOXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" />
-            <div class="w-full bg-white p-4">
-              <p class="text-md font-medium text-indigo-500">Coding</p>
-              <p class="mb-2 text-xl font-medium text-gray-800">
-                Getting to know the Ice Factory Pattern
-              </p>
-              <p class="text-md font-light text-gray-400">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse
-                vel neque ipsam?
-              </p>
-              <div class="justify-starts mt-4 flex flex-wrap items-center">
-                <div
-                  class="mr-2 mt-1 rounded-2xl bg-blue-100 py-1.5 px-4 text-xs text-gray-600">
-                  #js
-                </div>
-                <div
-                  class="mr-2 mt-1 rounded-2xl bg-blue-100 py-1.5 px-4 text-xs text-gray-600">
-                  #icefactory
-                </div>
-              </div>
-            </div>
-          </a>
-        </article>
-      </div>
-    </section>
+          </div>
+        </div>
+      </a>
+    </article>
   </div>
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { blogsRef } from "@/firebase";
 import { getDocs } from "firebase/firestore";
-import { blogsRef } from "../firebase";
 
 export default {
-  setup() {
-    const blogs = ref([]);
-
-    onMounted(async () => {
-      const querySnapshot = await getDocs(blogsRef);
-      querySnapshot.forEach((doc) => {
-        blogs.value.push(doc.data());
-        console.log(blogs.value);
-      });
-    });
-
+  name: "BlogCard",
+  data() {
     return {
-      blogs,
+      blogs: [],
     };
+  },
+  methods: {
+    async getBlogs() {
+      try {
+        const blogs = await getDocs(blogsRef);
+        blogs.forEach((doc) => {
+          this.blogs.push(doc.data());
+          console.log(this.blogs);
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+  mounted() {
+    this.getBlogs();
   },
 };
 </script>

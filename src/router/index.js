@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import app from "@/firebase";
 
 const router = createRouter({
@@ -20,6 +20,28 @@ const router = createRouter({
       path: "/blogs/:id",
       name: "blog",
       component: () => import("../views/BlogView.vue"),
+    },
+    // {
+    //   path: "/blogs/:id/edit",
+    //   name: "edit-blog",
+    //   component: () => import("../views/EditBlogView.vue"),
+    //   meta: { requiresAuth: true },
+    // },
+    // {
+    //   path: "/create-blog",
+    //   name: "create-blog",
+    //   component: () => import("../views/CreateBlogView.vue"),
+    //   meta: { requiresAuth: true },
+    // },
+    {
+      path: "/categories",
+      name: "categories",
+      component: () => import("../views/CategoriesView.vue"),
+    },
+    {
+      path: "/categories/:id",
+      name: "category",
+      component: () => import("../views/CategoryView.vue"),
     },
     {
       path: "/features",

@@ -24,6 +24,7 @@ export default app;
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
 // here we can export reusable database references
-export const blogsRef = collection(db, "blogs");
 export const usersRef = collection(db, "users");
+export const categoriesRef = collection(db, "categories");
+export const blogsRef = collection(db, "blogs");
 export const commentsRef = collection(db, "comments");

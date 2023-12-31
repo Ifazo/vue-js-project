@@ -47,6 +47,9 @@
                 <RouterLink to="/blogs">Blogs</RouterLink>
               </li>
               <li class="md:mr-12">
+                <RouterLink to="/categories">Categories</RouterLink>
+              </li>
+              <li class="md:mr-12">
                 <RouterLink to="/features">Features</RouterLink>
               </li>
               <li class="md:mr-12">
