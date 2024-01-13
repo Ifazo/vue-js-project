@@ -1,21 +1,20 @@
 <template>
   <div>
-    <section class="py-20">
-      <h1 class="mb-12 text-center font-sans text-5xl font-bold">
-        Recent Posts
-      </h1>
-      <div
-        class="mx-auto grid max-w-screen-lg grid-cols-1 gap-5 p-5 sm:grid-cols-2 md:grid-cols-3 lg:gap-10">
+    <!-- Card Blog -->
+    <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+      <!-- Grid -->
+      <div class="grid lg:grid-cols-2 lg:gap-y-16 gap-10">
         <BlogCard v-for="blog in blogs" :key="blog.id" :blog="blog" />
       </div>
-    </section>
+      <!-- End Grid -->
+    </div>
+    <!-- End Card Blog -->
   </div>
 </template>
 
 <script>
 import BlogCard from "@/components/BlogCard.vue";
-import { blogsRef } from "@/firebase";
-import { getDocs } from "firebase/firestore";
+import axios from "axios";
 
 export default {
   components: {
@@ -28,21 +27,16 @@ export default {
   },
   computed: {},
   methods: {
-    async getBlogs() {
-      try {
-        const blogs = await getDocs(blogsRef);
-        blogs.forEach((doc) => {
-          this.blogs.push(
-            doc.exists() && {
-              id: doc.id,
-              ...doc.data(),
-            }
-          );
+    getBlogs() {
+      axios
+        .get("https://dummyjson.com/posts")
+        .then((res) => {
+          this.blogs = res.data.posts;
           console.log(this.blogs);
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      } catch (error) {
-        console.log(error);
-      }
     },
   },
   created() {

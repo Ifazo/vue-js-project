@@ -1,13 +1,12 @@
 <template>
   <div>
-    <BlogDetails :blog="blog"/>
+    <BlogDetails :blog="blog" />
   </div>
 </template>
 
 <script>
 import BlogDetails from "@/components/BlogDetails.vue";
-import { db } from "@/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import axios from "axios";
 
 export default {
   components: {
@@ -20,14 +19,17 @@ export default {
   },
   computed: {},
   methods: {
-    async getBlog() {
-      try {
-        const blog = await getDoc(doc(db, "blogs", this.$route.params.id));
-        this.blog = blog.data();
-        console.log(this.blog);
-      } catch (error) {
-        console.log(error);
-      }
+    getBlog() {
+      axios
+        .get(
+          `https://jsonplaceholder.typicode.com/posts/${this.$route.params.id}`
+        )
+        .then((res) => {
+          this.blog = res.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
   created() {
