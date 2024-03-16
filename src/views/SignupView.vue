@@ -41,11 +41,11 @@
 </template>
 
 <script>
+import app from "@/lib/firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import app from "../firebase";
 
 export default {
-  name: "Signup",
+  name: "SignupView",
   data() {
     return {
       email: "",

@@ -1,22 +1,13 @@
 <template>
-  <HeaderComponent />
-  <RouterView />
-  <FooterComponent />
+  <nav>
+    <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link>
+  </nav>
+  <router-view/>
 </template>
 
-<script>
-import { RouterView } from "vue-router";
-import HeaderComponent from "./components/HeaderComponent.vue";
-import FooterComponent from "./components/FooterComponent.vue";
-
-export default {
-  name: "App",
-  components: {
-    HeaderComponent,
-    FooterComponent,
-    RouterView,
-  },
-};
-</script>
-
-<style></style>
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+</style>

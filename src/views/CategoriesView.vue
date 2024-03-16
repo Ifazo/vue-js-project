@@ -18,10 +18,11 @@
 
 <script>
 import CategoryCard from "@/components/CategoryCard.vue";
-import { categoriesRef } from "@/firebase";
+import { categoriesRef } from "@/lib/firebase";
 import { getDocs } from "firebase/firestore";
 
 export default {
+  name: 'CategoriesView',
   components: { CategoryCard },
   data() {
     return {

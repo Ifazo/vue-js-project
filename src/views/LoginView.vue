@@ -48,16 +48,16 @@
 </template>
 
 <script>
+import app from "@/lib/firebase";
 import {
   getAuth,
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
-import app from "../firebase";
 
 export default {
-  name: "Login",
+  name: "LoginView",
   components: {},
   data() {
     return {

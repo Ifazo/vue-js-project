@@ -6,7 +6,9 @@
 
 <script>
 import CreateBlog from "@/components/CreateBlog.vue";
+
 export default {
+  name: "DashboardView",
   components: {
     CreateBlog,
   },

@@ -9,6 +9,7 @@ import BlogDetails from "@/components/BlogDetails.vue";
 import axios from "axios";
 
 export default {
+  name: "BlogView",
   components: {
     BlogDetails,
   },

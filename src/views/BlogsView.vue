@@ -17,6 +17,7 @@ import BlogCard from "@/components/BlogCard.vue";
 import axios from "axios";
 
 export default {
+  name: "BlogsView",
   components: {
     BlogCard,
   },

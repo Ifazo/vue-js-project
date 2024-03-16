@@ -1,17 +1,23 @@
 <template>
   <div>
-    <HeroComponent />
+    <TheHeader />
+    <h1 class="text-3xl font-bold underline">
+      Hello world!
+    </h1>
+    <TheFooter />
   </div>
 </template>
 
 <script>
-import HeroComponent from "@/components/HeroComponent.vue";
-export default {
-  name: "Home",
-  components: {
-    HeroComponent,
-  },
-};
-</script>
+// @ is an alias to /src
+import TheHeader from '@/components/TheHeader.vue'
+import TheFooter from '@/components/TheFooter.vue'
 
-<style lang="scss" scoped></style>
+export default {
+  name: 'HomeView',
+  components: {
+    TheHeader,
+    TheFooter
+  }
+}
+</script>

@@ -7,7 +7,7 @@
         <div class="flex items-center">
           <img
             class="h-14 w-14 rounded-full object-cover"
-            src="../assets/logo.svg"
+            src="../assets/logo.png"
             alt="Simon Lewis" />
           <div class="ml-4 w-56">
             <p class="text-slate-800 text-xl font-extrabold">
